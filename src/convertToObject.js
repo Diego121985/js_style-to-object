@@ -15,9 +15,9 @@ function convertToObject(sourceString) {
     if (!trimmed) return;
 
     const [key, ...rest] = trimmed.split(':');
-    const value = rest.join(':')
+    const value = rest.join(':');
 
-    if (!key || !value) return;
+    if (!key || rest.length === 0) return;
 
     result[key.trim()] = value.trim();
   });
