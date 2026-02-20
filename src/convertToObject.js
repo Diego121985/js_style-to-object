@@ -8,22 +8,21 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  const parts = sourceString.split(";")
- parts.forEach((parte) => {
-  const trimmed = parte.trim();
+  const parts = sourceString.split(';');
+  parts.forEach((parte) => {
+    const trimmed = parte.trim();
 
-  if (!trimmed) return;
+    if (!trimmed) return;
 
-  const [key, value] = trimmed.split(":");
+    const [key, ...rest] = trimmed.split(':');
+    const value = rest.join(':')
 
-  if(!key || !value) return;
+    if (!key || !value) return;
 
-  result[key.trim()] = value.trim();
- })
+    result[key.trim()] = value.trim();
+  });
 
- return result;
-
+  return result;
 }
-
 
 module.exports = convertToObject;
