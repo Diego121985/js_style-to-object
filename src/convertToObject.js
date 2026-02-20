@@ -1,28 +1,27 @@
 'use strict';
 
-/**
- * @param {string} sourceString
- *
- * @return {object}
- */
 function convertToObject(sourceString) {
   const result = {};
 
   const parts = sourceString.split(';');
-  parts.forEach((parte) => {
-    const trimmed = parte.trim();
 
+  parts.forEach((part) => {
+    const trimmed = part.trim();
     if (!trimmed) return;
 
     const [key, ...rest] = trimmed.split(':');
-    const value = rest.join(':');
-
     if (!key || rest.length === 0) return;
 
-    result[key.trim()] = value.trim();
+    const cleanKey = key.trim();
+    if (!cleanKey) return;
+
+    const value = rest.join(':').trim();
+
+    result[cleanKey] = value;
   });
 
   return result;
 }
 
 module.exports = convertToObject;
+
